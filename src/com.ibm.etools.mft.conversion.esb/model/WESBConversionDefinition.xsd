@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.ibm.com/WESBArtifactsConversionToWMB"
+	xmlns:tns="http://www.ibm.com/WESBArtifactsConversionToWMB"
+	elementFormDefault="qualified" xmlns:Q1="http://www.ibm.com/mb/commonmodel">
+
+	<import namespace="http://www.ibm.com/mb/commonmodel" schemaLocation="commonmodel.xsd"></import>
+	
+	<element name="wesbConversion"
+		type="tns:WesbConversionType">
+	</element>
+
+
+	<complexType name="WesbConversionType">
+		<complexContent>
+			<extension base="tns:ConversionType">
+				<sequence>
+					<element name="sourceSelection" type="Q1:group"></element>
+					<element name="resourceConfiguration"
+						type="Q1:group">
+					</element>
+					<element name="globalOptions" type="Q1:group"></element>
+					<element name="conversion" type="Q1:group"></element>
+					<element name="summary" type="Q1:group"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="ConversionType"></complexType>
+</schema>

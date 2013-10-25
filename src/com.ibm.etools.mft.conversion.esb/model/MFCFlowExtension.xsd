@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension" xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:nsPrefix="mfcex" ecore:package="extension"
+	ecore:ignoreSubstitutionGroups="true">
+
+	<xsd:attribute name="autoLayout" type="xsd:boolean" default="true" />
+	
+	<xsd:attribute name="x" type="xsd:int" />
+
+	<xsd:attribute name="y" type="xsd:int" />
+	
+	<xsd:attribute name="showInputResponse" type="xsd:boolean" default="true" />
+	
+	<xsd:attribute name="showInputFault" type="xsd:boolean" default="true" />
+
+</xsd:schema>

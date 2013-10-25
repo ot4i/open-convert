@@ -1,0 +1,11 @@
+	@Override
+	public Terminal getInputTerminal(String sourceTerminalName, Nodes nodes) {
+		// Retrieve the node and map to its input terminal. For example,
+		// 		TraceNode trace = (TraceNode) nodes.getNode(ROLE_MAIN);
+		// 		return trace.INPUT_TERMINAL_IN;
+		
+		// TODO convert input terminal 
+		
+		return super.getInputTerminal(sourceTerminalName, nodes);
+	}
+

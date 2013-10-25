@@ -1,0 +1,7 @@
+	public String getConvertedTo() {
+		// TODO Provide information about what the converter will convert the Export or Import binding to.
+		// The String returned here is used to populate the "Convert To" column of the Binding table
+		// in the "Configure global conversion options" section of the WESB Conversion Tool.
+    	// For example, "SOAPInput" or "MQHeader,MQOutput,MQGet" or some other node name.
+		return "To do by user";
+	}

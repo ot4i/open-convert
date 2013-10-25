@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+    <extension-point id="WESBResourceConverter" name="WESB Resource Converter" schema="schema/WESBResourceConverter.exsd"/>
+    <extension-point id="MediationPrimitiveConverter" name="Mediation Primitive Converter" schema="schema/MediationPrimitiveConverter.exsd"/>
+    <extension-point id="BindingConverter" name="Binding Converter" schema="schema/BindingConverter.exsd"/>
+
+ 	<extension point="com.ibm.etools.mft.conversion.esb.MediationPrimitiveConverter">
+        <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.MessageElementSetterConverter"/>
+        <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.XSLTransformationConverter"/>
+        <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.MessageFilterConverter"/>
+        <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.InputConverter"/>
+        <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.InputResponseConverter"/>
+        <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.CalloutConverter"/>
+        <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.CalloutResponseConverter"/>
+ 	</extension>
+
+ 	<extension point="com.ibm.etools.mft.conversion.esb.BindingConverter">
+        <bindingHandler class="com.ibm.etools.mft.conversion.esb.extension.binding.WebServiceExportConverter"/>
+        <bindingHandler class="com.ibm.etools.mft.conversion.esb.extension.binding.WebServiceImportConverter"/>
+        <bindingHandler class="com.ibm.etools.mft.conversion.esb.extension.binding.JaxWsExportConverter"/>
+        <bindingHandler class="com.ibm.etools.mft.conversion.esb.extension.binding.JaxWsImportConverter"/>
+ 	</extension>
+
+   <extension point="org.eclipse.ui.importWizards">
+		<wizard
+            name="%WESBPI.import.name"
+            class="com.ibm.etools.mft.conversion.esb.wizard.WESBProjectInterchangeImportWizard"
+            id="com.ibm.etools.mft.conversion.esb.wizard.WESBProjectInterchangeImportWizard"
+            icon="icons/full/obj16/importzip_wiz.gif">
+            <description>
+            	%WESBPI.import.description
+         	</description>
+      	</wizard>		        
+   </extension>
+   
+	<extension point="org.eclipse.ui.popupMenus">
+		<objectContribution
+		    id="com.ibm.etools.mft.conversion.esb.extension.NavigatorAction"
+		    objectClass="org.eclipse.core.resources.IProject">
+			<action
+				class="com.ibm.etools.mft.conversion.esb.extension.NavigatorAction"
+		    	enablesFor="+"
+		    	id="com.ibm.etools.mft.conversion.esb.extension.NavigatorAction"
+		    	label="%NavigatorAction.name"
+		    	menubarPath="convertWESBMenu">
+			</action>
+		</objectContribution>
+	</extension>
+ <extension
+       id="mediationmodule"
+       point="org.eclipse.core.resources.natures">
+       <runtime>
+          <run
+                class="com.ibm.etools.mft.conversion.esb.DummyNature">
+          </run>
+       </runtime>
+ </extension>
+ <extension
+       id="wesblibrary"
+       point="org.eclipse.core.resources.natures">
+       <runtime>
+          <run
+                class="com.ibm.etools.mft.conversion.esb.DummyNature">
+          </run>
+       </runtime>
+ </extension>
+
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            file-extensions="conversion"
+            id="com.ibm.etools.mft.conversion.esb.editor.wesbConversionEditorContentType"
+            name="%content-type.name"
+            priority="high">
+         <describer
+               class="com.ibm.etools.mft.conversion.esb.editor.WESBConversionEditorContentDescriber">
+         </describer>
+      </content-type>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.ibm.etools.mft.conversion.esb.editor.WESBConversionEditor"
+            default="true"
+            id="com.ibm.etools.mft.conversion.esb.editor.WESBConversionEditor"
+            icon="icons/obj16/conversion_obj.gif"
+            name="%editor.name">
+            <contentTypeBinding contentTypeId="com.ibm.etools.mft.conversion.esb.editor.wesbConversionEditorContentType"/>
+      </editor>
+   </extension>
+   <extension
+         id="id1"
+         point="com.ibm.etools.mft.wizard.editor.customPropertyEditors">
+      <EditorContributor
+            EditorId="SourceProjectEditor"
+            EditorImpl="com.ibm.etools.mft.conversion.esb.editor.parameter.SourceProjectEditor">
+      </EditorContributor>
+   </extension>
+   <extension
+         id="id2"
+         point="com.ibm.etools.mft.wizard.editor.customPropertyEditors">
+      <EditorContributor
+            EditorId="ResourceOptionsEditor"
+            EditorImpl="com.ibm.etools.mft.conversion.esb.editor.parameter.ResourceOptionsEditor">
+      </EditorContributor>
+   </extension>
+   <extension
+         id="id3"
+         point="com.ibm.etools.mft.wizard.editor.customPropertyEditors">
+      <EditorContributor
+            EditorId="GlobalOptionsEditor"
+            EditorImpl="com.ibm.etools.mft.conversion.esb.editor.parameter.GlobalOptionsEditor">
+      </EditorContributor>
+   </extension>
+   <extension
+         id="id4"
+         point="com.ibm.etools.mft.wizard.editor.customPropertyEditors">
+      <EditorContributor
+            EditorId="ConversionEditor"
+            EditorImpl="com.ibm.etools.mft.conversion.esb.editor.parameter.ConversionEditor">
+      </EditorContributor>
+   </extension>
+   <extension
+         id="id5"
+         point="com.ibm.etools.mft.wizard.editor.customPropertyEditors">
+      <EditorContributor
+            EditorId="SummaryEditor"
+            EditorImpl="com.ibm.etools.mft.conversion.esb.editor.parameter.SummaryEditor">
+      </EditorContributor>
+   </extension>
+ 	
+</plugin>

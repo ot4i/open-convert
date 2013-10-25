@@ -1,0 +1,1231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:map="http://www.ibm.com/2008/ccl/Mapping" ecore:nsPrefix="map" ecore:package="com.ibm.msl.mapping" targetNamespace="http://www.ibm.com/2008/ccl/Mapping">
+  <xsd:import namespace="http://www.eclipse.org/emf/2002/Ecore" schemaLocation="ecore.xsd"/>
+  <xsd:element ecore:ignore="true" name="Component" type="map:Component"/>
+  <xsd:element ecore:ignore="true" name="RefinableComponent" type="map:RefinableComponent"/>
+  <xsd:element ecore:ignore="true" name="SemanticRefinement" type="map:SemanticRefinement"/>
+  <xsd:element ecore:ignore="true" name="MappingContainer" type="map:MappingContainer"/>
+  <xsd:element ecore:ignore="true" name="SimpleRefinement" type="map:SimpleRefinement"/>
+  <xsd:element ecore:ignore="true" name="MappingGroup" type="map:MappingGroup"/>
+  <xsd:element ecore:ignore="true" name="Mapping" type="map:Mapping"/>
+  <xsd:element ecore:ignore="true" name="MappingRoot" type="map:MappingRoot"/>
+  <xsd:element ecore:ignore="true" name="MappingDeclaration" type="map:MappingDeclaration"/>
+  <xsd:element ecore:ignore="true" name="MappingDesignator" type="map:MappingDesignator"/>
+  <xsd:element ecore:ignore="true" name="Code" type="map:Code"/>
+  <xsd:element ecore:ignore="true" name="ConditionRefinement" type="map:ConditionRefinement"/>
+  <xsd:element ecore:ignore="true" name="SubmapRefinement" type="map:SubmapRefinement"/>
+  <xsd:element ecore:ignore="true" name="FunctionRefinement" type="map:FunctionRefinement"/>
+  <xsd:element ecore:ignore="true" name="SortRefinement" type="map:SortRefinement"/>
+  <xsd:element ecore:ignore="true" name="CustomFunctionRefinement" type="map:CustomFunctionRefinement"/>
+  <xsd:element ecore:ignore="true" name="CustomFunctionXPathRefinement" type="map:CustomFunctionXPathRefinement"/>
+  <xsd:element ecore:ignore="true" name="CustomFunctionXSLTRefinement" type="map:CustomFunctionXSLTRefinement"/>
+  <xsd:element ecore:ignore="true" name="CustomFunctionJavaRefinement" type="map:CustomFunctionJavaRefinement"/>
+  <xsd:element ecore:ignore="true" name="CustomFunctionExternalRefinement" type="map:CustomFunctionExternalRefinement"/>
+  <xsd:element ecore:ignore="true" name="CodeRefinement" type="map:CodeRefinement"/>
+  <xsd:element ecore:ignore="true" name="GroupRefinement" type="map:GroupRefinement"/>
+  <xsd:element ecore:ignore="true" name="SortDesignator" type="map:SortDesignator"/>
+  <xsd:element ecore:ignore="true" name="MoveRefinement" type="map:MoveRefinement"/>
+  <xsd:element ecore:ignore="true" name="ConvertRefinement" type="map:ConvertRefinement"/>
+  <xsd:element ecore:ignore="true" name="LookupRefinement" type="map:LookupRefinement"/>
+  <xsd:element ecore:ignore="true" name="Import" type="map:Import"/>
+  <xsd:element ecore:ignore="true" name="MappingImport" type="map:MappingImport"/>
+  <xsd:element ecore:ignore="true" name="CustomImport" type="map:CustomImport"/>
+  <xsd:element ecore:ignore="true" name="DeclarationDesignator" type="map:DeclarationDesignator"/>
+  <xsd:element ecore:ignore="true" name="CastDesignator" type="map:CastDesignator"/> 
+  <xsd:element ecore:ignore="true" name="InlineRefinement" type="map:InlineRefinement"/>
+  <xsd:element ecore:ignore="true" name="NestedRefinement" type="map:NestedRefinement"/>
+  <xsd:element ecore:ignore="true" name="LocalRefinement" type="map:LocalRefinement"/>
+  <xsd:element ecore:ignore="true" name="ConditionalFlowRefinement" type="map:ConditionalFlowRefinement"/>
+  <xsd:element ecore:ignore="true" name="IfRefinement" type="map:IfRefinement"/>
+  <xsd:element ecore:ignore="true" name="ElseRefinement" type="map:ElseRefinement"/>
+  <xsd:element ecore:ignore="true" name="RDBNestedRefinement" type="map:RDBNestedRefinement"/>
+  <xsd:element ecore:ignore="true" name="RDBSelectRefinement" type="map:RDBSelectRefinement"/>
+  <xsd:element ecore:ignore="true" name="RDBStoredProcedureRefinement" type="map:RDBStoredProcedureRefinement"/>
+  <xsd:element ecore:ignore="true" name="RDBUserDefinedFunctionRefinement" type="map:RDBUserDefinedFunctionRefinement"/>
+  <xsd:element ecore:ignore="true" name="RDBDeleteRefinement" type="map:RDBDeleteRefinement"/>
+  <xsd:element ecore:ignore="true" name="RDBInsertRefinement" type="map:RDBInsertRefinement"/>
+  <xsd:element ecore:ignore="true" name="RDBUpdateRefinement" type="map:RDBUpdateRefinement"/>
+  <xsd:element ecore:ignore="true" name="RDBFailureRefinement" type="map:RDBFailureRefinement"/>
+  <xsd:element ecore:ignore="true" name="RDBReturnRefinement" type="map:RDBReturnRefinement"/>
+  <xsd:element ecore:ignore="true" name="RDBTransactionRefinement" type="map:RDBTransactionRefinement"/>
+  <xsd:element ecore:ignore="true" name="OverrideRefinement" type="map:OverrideRefinement"/>
+  <xsd:element ecore:ignore="true" name="ForEachRefinement" type="map:ForEachRefinement"/>
+  <xsd:element ecore:ignore="true" name="JoinRefinement" type="map:JoinRefinement"/>
+  <xsd:element ecore:ignore="true" name="AppendRefinement" type="map:AppendRefinement"/>
+  <xsd:element ecore:ignore="true" name="CreateRefinement" type="map:CreateRefinement"/>
+  <xsd:element ecore:ignore="true" name="Generation" type="map:Generation"/>
+  <xsd:element ecore:ignore="true" name="PropertyGroup" type="map:PropertyGroup"/>
+  <xsd:element ecore:ignore="true" name="PolicyRefinement" type="map:PolicyRefinement"/>
+  <xsd:element ecore:ignore="true" name="VariableDesignator" type="map:VariableDesignator"/>
+  <xsd:element ecore:ignore="true" name="TaskRefinement" type="map:TaskRefinement"/>
+  <xsd:element ecore:ignore="true" name="EnhDocumentation" type="map:EnhDocumentation" />
+
+  <xsd:complexType abstract="true" name="Component">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+Component is the root of all mapping objects and provides support for annotations and documentation.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="annotations" type="ecore:EStringToStringMapEntry"/>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="documentation" type="xsd:string"/>
+      <xsd:element ecore:resolveProvies="true" minOccurs="0" maxOccurs="1" name="enhDocumentation" type="map:EnhDocumentation"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="RefinableComponent">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+RefinableComponent introduces the concept of refinements to the mapping model.
+</p>
+<p>
+Mappings themselves represent the "pure relationship" model, both the heirarchy of mappings as well as their inputs and outputs. Refinements give the mappings an exact semantic or "meaning".
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:Component">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="refinements" type="map:SemanticRefinement"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="SemanticRefinement">
+    <xsd:annotation>
+      <xsd:appinfo ecore:key="operations" source="http://www.eclipse.org/emf/2002/Ecore">
+        <operation name="isPrimary" type="ecore:EBooleanObject">
+          <annotation source="http://www.eclipse.org/emf/2002/GenModel">
+            <detail key="documentation">&lt;p&gt;&#13;
+Returns a boolean indicating whether the refinement is primary or not.&#13;
+&lt;/p&gt;&#13;
+&lt;/p&gt;&#13;
+The mapping model introduces the concept of primary and secondary refinements to apply a concrete meaning to mappings. Because RefinableComponent supports an unbounded list of SemanticRefinements, there needs to be a mechanism for us to convey the true meaning of a mapping.&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+For example, a mapping with a MoveRefinements, a SubMapRefinement and a ConiditonRefinement does not give us any concrete meaning. But if we limit the number of primary refinements to 1 per mapping than a useful meaning can be interpreted.&#13;
+&lt;/p&gt;</detail>
+          </annotation>
+        </operation>
+      </xsd:appinfo>
+      <xsd:documentation>
+<p>
+SemanticRefinement is the root of all refinement objects and provides support for determining if a refinement is primary or not.
+</p>
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:Component">
+        <xsd:attribute name="defaultValue" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The defaultValue attribute of a SemanticRefinement gives the user the ability to provide his or her own default value for those transforms that support default values.</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="MappingContainer">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+Mappings can appear nested within another mapping using the "nested -- nestedIn" relationship in MappingContainer and RefinableComponent.
+</p>
+<p>
+Fundamentally, a mapping model is a tree structured hierarchy of mappings (instances of class Mapping)
+or groups of mappings (instances of class MappingGroup). The hierarchy is maintained by the nested-nestedIn association in the abstract base class MappingContainer.
+</p>
+<p>
+Nested mappings are typically used to represent finer grained mapping information than their parent
+mapping. Mapping hierarchies can be arbitrarily deep but usually are limited to two or three levels. Each mapping level typically corresponds to an equivalent level of nesting in one or both of the mapped models.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:RefinableComponent">
+        <xsd:sequence>
+        	<xsd:element ecore:resolveProxies="true"
+        		maxOccurs="unbounded" minOccurs="0" name="nested"
+        		type="map:RefinableComponent" />
+        	<xsd:element ecore:resolveProxies="true" name="variables" type="map:VariableDesignator"
+        		maxOccurs="unbounded" minOccurs="0">
+        	</xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SimpleRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+SimpleRefinement is one of extensible elements within the mapping model. The usage of SimpleRefinement is domain specific.
+</p>
+<p>
+SimpleRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement">
+        <xsd:attribute name="kind" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The kind of SimpleRefinement gives the refinement its meaning and is domain specific.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="value" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The value of SimpleRefinement gives the refinement a means to store extra data associated with it and is domain specific.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MappingGroup">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+Fundamentally, a mapping model is a tree structured hierarchy of mappings (instances of class Mapping)
+or groups of mappings (instances of class MappingGroup). The hierarchy is maintained by the nested-nestedIn association in the abstract base class MappingContainer.
+</p>
+<p>
+MappingGroups are typically used to attach semantic refinements to the model that apply to the entire collection of nested mappings in the group.
+</p>
+<p>
+Conditions are often attached to groups of mappings (class MappingGroup), instead of individual mappings.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:MappingContainer">
+        <xsd:attribute name="name" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The name of the mapping group.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Mapping">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+Mapping is the most important class of the primary classes in the mapping model. The Mapping class is used to associate (possibly many) objects on one side of a mapping (i.e., inputs) with corresponding objects on the other side of a mapping (i.e., outputs).
+</p>
+<p>
+Fundamentally, a mapping model is a tree structured hierarchy of mappings (instances of class Mapping)
+or groups of mappings (instances of class MappingGroup). The hierarchy is maintained by the nestednestedIn association in the abstract base class MappingContainer.
+</p>
+<p>
+Mappings themselves represent the "pure relationship" model, both the heirarchy of mappings as well as their inputs and outputs. Refinements give the mappings an exact semantic or "meaning".
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:MappingContainer">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="inputs" type="map:MappingDesignator"/>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="outputs" type="map:MappingDesignator"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MappingRoot">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+MappingRoot represents the root of a mapping tree. There will be one and only one MappingRoot per mapping tree.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:Mapping">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="mappingImports" type="map:MappingImport"/>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="customImports" type="map:CustomImport"/>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="IONamespaces" type="map:Namespace"/>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="extensionNamespaces" type="map:Namespace"/>
+          <xsd:element ecore:resolveProxies="true"  minOccurs="0" name="generation" type="map:Generation"/>
+        </xsd:sequence>
+        <xsd:attribute name="domainID" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+A domainID identifies the domain (or scenario) under which this mapping was developed.  For example, this could be the plugin ID of the extension that implements the domain.  All validators and generators will be resolved via this extension.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="targetNamespace" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+A targetNamespace identifies the namespace under which the elements developed in this map will be associated.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>     
+        <xsd:attribute name="version" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+A version identifies attribute identifies the version of the mapping tool that serialized the msl document.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MappingDeclaration">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+A MappingDeclaration is a named map that accepts a number of input and output parameters using the 'input' and 'output' relationships from Mapping.
+</p>
+<p>
+The main use cases for a MappingDeclaration is to be a named mapping that can be referenced by a SubmapRefinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:Mapping">
+        <xsd:attribute name="name" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The name used to reference this named mapping.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MappingDesignator">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;&#13;
+MappingDesignator provides a level of indirection to the true model object.&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+This is required to offer the following support:&#13;
+&lt;ul&gt;&#13;
+&lt;li&gt;context&lt;/li&gt;&#13;
+&lt;li&gt;variable reference within path&lt;/li&gt;&#13;
+&lt;li&gt;resolve ambiguities&lt;/li&gt;&#13;
+&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:Component">
+        <xsd:attribute name="variable" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+Used in the serialization path to reference parent designators.
+</p>
+<p>
+Also used to resolve ambiguities such as multiple inputs referencing the same named type which are actually different.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="index" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+Used when referencing an array as a means to access instance at the specified index. This is an optional attribute and if not specified, the entire array is considered to be the reference object.
+</p>
+</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="refName" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The refName is the string representation for the path to which the MappingDesignator is using. The refName provides a level of robustness when the referenced object can not be resolved.
+</p>
+<p>
+The content of refName is to be interpreted only by the path resolver.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute default="false" ecore:unsettable="false" name="isParentDelta" type="ecore:EBooleanObject">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+Specifies whether the parent reference is the context or if this designator is a variant of its parent.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="type" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+Used to detect when a type participating in a transform may have been changed in the underlying source or target model. This is an optional attribute and if not specified, the validator will merely ignore the check.
+</p>
+</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="auxiliary"  default="false" ecore:unsettable="false"  type="ecore:EBooleanObject">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+Specifies whether this designator is primary or auxiliary. The default value is primary.
+</p>
+</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ecore:reference="xsd:anyType" name="object" type="xsd:anyURI"/>
+        <xsd:attribute ecore:reference="map:MappingDesignator" name="parent" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Code">
+    <xsd:annotation>
+      <xsd:appinfo ecore:key="operations" source="http://www.eclipse.org/emf/2002/Ecore">
+        <operation name="isInline" type="ecore:EBooleanObject">
+          <annotation source="http://www.eclipse.org/emf/2002/GenModel">
+            <detail key="documentation">&lt;p&gt;&#13;
+Returns a boolean indicating whether the code is internal or external.&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+&lt;code&gt;true&lt;/code&gt; if the code is internal and can be access via internalCode&lt;br&gt;&#13;
+&lt;code&gt;false&lt;/code&gt; if the code is external and can be access via exernalCode&#13;
+&lt;/p&gt;</detail>
+          </annotation>
+        </operation>
+      </xsd:appinfo>
+      <xsd:documentation>
+<p>
+Code provides a means of storing a reference to external code or the "code" contents itself.
+</p>
+<p>
+The mapping model is language neutral.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="languageType" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>
+<p>
+The mapping model is language neutral and languageType allows users of the model to identify the coding language used.
+</p>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="internalCode" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>
+<p>
+The internalCode provides a means of storing the "code" contents.
+</p>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="externalCode" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>
+<p>
+The externalCode provides a means of storing a reference to the external code.
+</p>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="ConditionRefinement">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;&#13;
+ConditionRefinement represents conditional logic to be applied to this mapping.&lt;br&gt;&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+ConditionRefinement is a secondary refinement.&#13;
+&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:CodeRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SubmapRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+SubmapRefinement represents the invoking of a MappingDeclaration to perform work for this mapping. SubmapRefinement are used to construct maps into reusable maps. If the input and output to the mapping are array, then iterating over the input should be performed.
+</p>
+<p>
+SubmapRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement">
+        <xsd:attribute name="refName" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The refName is the string representation for the reference to which MappingDeclaration this SubmapRefinement is using.
+</p>
+<p>
+The type of refName is really QName, i.e. it is represented by prefix:localName
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ecore:reference="map:MappingDeclaration" name="ref" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FunctionRefinement">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;&#13;
+FunctionRefinement is one of extensible elements within the mapping model. The usage of FunctionRefinement allows users of the model to contribute additional refinements in a more structured manner than SimpleRefinement. The contributions made using FunctionRefinement can be used across many domains and do not require direct extensions to the mapping model itself.&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+FunctionRefinement is a primary refinement.&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+The following are use cases that document why FunctionRefinement subclasses CodeRefinement.&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+Use Case 1:&lt;br&gt;&#13;
+Switching from a FunctionRefinement to a CustomFunctionRefinement and allowing the user to customize the code that the FunctionRefinement would have generated. The WebSphere InterChange Server (WICS) Map Designer had this support and during the design/development of the Websphere Integration Deverloper (WID) Business Object Map editor there were several requests for this support as well.&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+Use Case 2:&lt;br&gt;&#13;
+During the authoring of the map, the code for the FunctionRefinements could be pre-generated and stored within the Code class. This could provide a meaning to have a some performance benefits when the full code generation is done at a later stage.&#13;
+&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:CodeRefinement">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="callParameters" type="map:ICallParameter"/>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="properties" type="ecore:EStringToStringMapEntry"/>
+        </xsd:sequence>
+        <xsd:attribute name="localName" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The localName is the name of the function in FunctionRefinement.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="declaration" type="map:IFunctionDeclaration">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The declaration is the actual reference to which contributed function a given instance of FunctionRefinement is.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SortRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+SortRefinement represents sorting logic to be applied to this mapping. Only applicable when working with arrays of input and output.
+</p>
+<p>
+SortRefinement is a secondary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="fields" type="map:SortDesignator"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CustomFunctionRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+CustomFunctionRefinement represents custom coding of the logic to be used to perform this mapping.
+</p>
+<p>
+CustomFunctionRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:CodeRefinement">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="callParameters" type="map:ICallParameter"/>
+         </xsd:sequence>
+         <xsd:attribute name="localName" type="xsd:string">
+           <xsd:annotation>
+            <xsd:documentation>
+<p>
+The localName is the local name of the function in CustomFunctionRefinement.
+</p>
+            </xsd:documentation>
+           </xsd:annotation>
+         </xsd:attribute>
+        </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="CustomFunctionXPathRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+CustomFunctionXPathRefinement represents a custom xpath expression.
+</p>
+<p>
+CustomFunctionXPathRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:CustomFunctionRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CustomFunctionXSLTRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+CustomFunctionXSLTRefinement represents a custom xslt template call.
+</p>
+<p>
+CustomFunctionXSLTRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:CustomFunctionRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CustomFunctionJavaRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+CustomFunctionJavaRefinement represents a custom java call.
+</p>
+<p>
+CustomFunctionJavaRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:CustomFunctionRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CustomFunctionExternalRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+CustomFunctionExternalRefinement represents a call to an external function provided by an application.
+</p>
+<p>
+CustomFunctionExternalRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:CustomFunctionRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType abstract="true" name="CodeRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+CodeRefinement is the root for all refinements that can reference or contain "code".
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" minOccurs="0" name="code" type="map:Code"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:reference="map:CustomImport" name="customImport" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="GroupRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+GroupRefinement represents the grouping of a collection of data into a collection of data containing a sequence.
+</p>
+<p>
+GroupRefinement is a primary refinement.
+</p>
+<p>
+Example:
+</p>
+<pre>
+Input data structure
+cities
+  city   CityType[]
+    country  String
+    name     String
+
+Output data structure
+countries
+  country   CountryType[]
+    name    String
+    city       String[]
+
+
+Input data
+France    Paris
+Canada   Toronto
+France    Nice
+Canada   Halifax
+Canada   Kensington
+
+Output data
+France
+    Paris
+    Nice
+France
+    Toronto
+    Halifax
+    Kensington
+</pre>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="fields" type="map:MappingDesignator"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SortDesignator">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+A SortDesignator provides a modifier for the SortRefinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:MappingDesignator">
+        <xsd:attribute default="ASC" ecore:unsettable="false" name="modifier" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+Specifies the manner in which this field will be sorted.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType ecore:instanceClass="com.ibm.msl.mapping.refinements.IFunctionDeclaration" name="IFunctionDeclaration">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType ecore:instanceClass="com.ibm.msl.mapping.refinements.ICallParameter" name="ICallParameter">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:complexType name="ConvertRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+ConvertRefinement represents the moving of data from the input to the output in a single transform  when their types are related through derivation. 
+</p>
+<p>
+ConvertRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MoveRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+MoveRefinement represents the moving (actually copying) of data from the input to the output.
+</p>
+<p>
+MoveRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+   <xsd:complexType name="LookupRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+LookupRefinement represents a callout to obtain data that will be set in the output.
+</p>
+<p>
+LookupRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:CodeRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Import">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+When using a submap, custom method or a built-in function from another file, the MappingRoot requires an Import in order to resolve the reference correctly.
+</p>
+<p>
+An Import associates a namespace to a relative URI of an imported file.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:Component">
+        <xsd:attribute name="namespace" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+If appropriate, the namespace associated with the imported file.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="location" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The location is a relative URI to the imported file.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MappingImport">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+When using a SubmapRefinement to reference a MappingDeclaration from another file, the MappingRoot requires an MappingImport in order to resolve the reference correctly.
+</p>
+<p>
+A MappingImport associates a namespace to a relative URI of an imported map file.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:Import">
+         <xsd:attribute ecore:reference="map:MappingRoot" name="mappingRoot" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CustomImport">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+When referencing a custom method or a built-in function from another file within an expression, the MappingRoot requires an Import in order to resolve the reference correctly.
+</p>
+<p>
+A CustomImport associates a namespace to a relative URI of an imported custom file.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:Import">
+        <xsd:attribute name="languageType" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The language type associated with the imported custom file.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Namespace">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+A Namespace is used to capture namespace information from a source or target domain.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:Component">
+        <xsd:attribute name="prefix" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The xmlns-declared prefix for this namespace.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="uri" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The namespace URI to be associated with the given prefix.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="kind" default="core">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+There are three kinds of namespaces.
+<ul>
+&lt;ul&gt;
+<li><i>core</i>
+A core namespace is a namespace from the source or target domain.
+</li>
+<li><i>extension</i>
+An extension namespace is a namespace of an extension function used in an xpath expression.
+</li>
+<li><i>supplement</i>
+</li>
+A supplement namespace is a namespace added by the user.
+</ul>
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:token">
+              <xsd:enumeration value="core"/>
+              <xsd:enumeration value="extension"/>
+              <xsd:enumeration value="supplement"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="DeclarationDesignator">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+A DeclarationDesignator provides a means to define the inputs /outputs of a MappingDeclaration to be an array.
+</p>
+<p>
+The DeclarationDesignator designator can only be used as the designators for MappingDeclaration.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:MappingDesignator">
+        <xsd:sequence>
+           <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="casts" type="map:CastDesignator"/>
+        </xsd:sequence>
+        <xsd:attribute default="false" ecore:unsettable="false" name="array" type="ecore:EBooleanObject">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+Specifies whether the referenced object should be treated as an array or not regardless of the actual modeled information.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CastDesignator">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+CastDesignators provide a means to capture all of the casting information within that source or target root. 
+In particular, a CastDesignator identifies a particular source or target component (a wildcard, a head element in a substitution group, or a base type) that has been replaced or substituted with an valid alternative component (a concrete element or attribute or derived type) within that source or target root.
+</p>
+<p>
+The CastDesignator designator can only be used within a DeclarationDesignator.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:MappingDesignator">
+        <xsd:attribute name="qualifier" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>
+<p>
+The qualifier attribute is a QName used to identify the global element, attribute or named type that will replace the original model component.
+</p>
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ecore:reference="xsd:anyType" name="castObject" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="InlineRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+InlineRefinement represents an inline mapping
+that supports implicit iteration when input / output are array types.
+</p>
+<p>
+InlineRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="NestedRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+NestedRefinement represents a nested mapping that supports the passing the inputs / outputs directly to the internal mappings.
+</p>
+<p>
+NestedRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="ConditionalFlowRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:NestedRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="IfRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:ConditionalFlowRefinement">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" minOccurs="0" name="code" type="map:Code"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ElseRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:ConditionalFlowRefinement">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>  
+  <xsd:complexType abstract="true" name="RDBNestedRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:NestedRefinement">
+        <xsd:attribute name="ref" type="xsd:string"/>
+      </xsd:extension>
+     </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="RDBSelectRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:RDBNestedRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>  
+  <xsd:complexType name="RDBStoredProcedureRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:RDBNestedRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>  
+  <xsd:complexType name="RDBUserDefinedFunctionRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:RDBNestedRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>  
+  <xsd:complexType name="RDBFailureRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:NestedRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="RDBReturnRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:NestedRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="RDBInsertRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:RDBNestedRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>  
+  <xsd:complexType name="RDBUpdateRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:RDBNestedRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>  
+  <xsd:complexType name="RDBDeleteRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement">
+        <xsd:attribute name="ref" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>  
+  <xsd:complexType name="RDBTransactionRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement"/>
+     </xsd:complexContent>
+  </xsd:complexType>  
+  <xsd:complexType name="OverrideRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement"/>
+     </xsd:complexContent>
+  </xsd:complexType>  
+  <xsd:complexType name="LocalRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:InlineRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ForEachRefinement">
+  	<xsd:complexContent>
+  		<xsd:extension base="map:InlineRefinement">
+  			<xsd:attribute name="allowEmpty" type="xsd:boolean"></xsd:attribute>
+  		</xsd:extension>
+  	</xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="JoinRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:InlineRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AppendRefinement">
+    <xsd:complexContent>
+      <xsd:extension base="map:NestedRefinement"/>
+    </xsd:complexContent>
+  </xsd:complexType>  
+  
+  
+     <xsd:complexType name="CreateRefinement">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+CreateRefinement is used to create a target element without using any inputs.  This can be used to create an empty element or to create a nil element.
+</p>
+<p>
+CreateRefinement is a primary refinement.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:InlineRefinement">
+      	<xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="properties" type="ecore:EStringToStringMapEntry"/>
+    	</xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  
+    <xsd:complexType name="Generation">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+A Generation element captures information pertaining to the actual code generation of a transformation.
+In particular, it captures different generator options and settings. 
+</p> 
+      </xsd:documentation>
+    </xsd:annotation>
+      <xsd:complexContent>
+        <xsd:extension base="map:Component">
+          <xsd:sequence>
+            <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="options" type="ecore:EStringToStringMapEntry"/>
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+  </xsd:complexType>
+<xsd:complexType name="PropertyGroup">
+    <xsd:annotation>
+      <xsd:documentation>
+<p>
+A property group is a unit of properties that can be defined on a particular level and potentially overridden at another level.
+</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="properties" type="ecore:EStringToStringMapEntry"/>
+    </xsd:sequence>
+        
+    <xsd:attribute name="id" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>
+<p>
+The id that will be used to uniquely identify the property group.
+</p>
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  
+  
+  <xsd:complexType name="PolicyRefinement">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;&#13;
+PolicyRefinement represents special handling instructions to be applied to this mapping.&lt;br&gt;&#13;
+&lt;/p&gt;&#13;
+&lt;p&gt;&#13;
+PolicyRefinement is a secondary refinement.&#13;
+&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="map:SemanticRefinement">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="group" type="map:PropertyGroup"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="VariableDesignator">
+  	<xsd:complexContent>
+  		<xsd:extension base="map:DeclarationDesignator">
+  			<xsd:attribute name="value" type="xsd:string" use="optional"/>
+  		</xsd:extension>
+  	</xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="TaskRefinement">
+  	<xsd:complexContent>
+  		<xsd:extension base="map:SemanticRefinement">
+  			<xsd:attribute default="todo" name="type">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:token">
+						<xsd:enumeration value="error"/>
+						<xsd:enumeration value="warning"/>
+						<xsd:enumeration value="info"/>
+						<xsd:enumeration value="todo"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+  		</xsd:extension>
+  	</xsd:complexContent>
+  </xsd:complexType>
+  
+  	<xsd:complexType name="EnhDocumentation">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="ref" type="xsd:anyURI"/>
+				<xsd:attribute name="description" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+  
+</xsd:schema>

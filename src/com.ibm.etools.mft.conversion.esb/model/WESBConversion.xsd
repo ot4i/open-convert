@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ibm.com/WESBArtifactsConversionToWMB"
+	xmlns:tns="http://www.ibm.com/WESBArtifactsConversionToWMB"
+	elementFormDefault="qualified">
+
+	<complexType name="PathMapping">
+		<attribute name="source" type="string"></attribute>
+		<attribute name="target" type="string"></attribute>
+	</complexType>
+
+	<complexType name="PrimitiveConverter">
+		<complexContent>
+			<extension base="tns:Converter"></extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="Converter">
+		<sequence>
+			<element name="usages" type="string" minOccurs="0" maxOccurs="unbounded">
+			</element>
+			<element name="class" type="tns:ClassDefinition" minOccurs="1" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="type" type="string"></attribute>
+	</complexType>
+
+	<complexType name="ClassDefinition">
+		<attribute name="class" type="string"></attribute>
+		<attribute name="resourceType" type="string"></attribute>
+		<attribute name="resourcePath" type="string"></attribute>
+	</complexType>
+
+	<complexType name="BindingConverter">
+		<complexContent>
+			<extension base="tns:Converter">
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="WESBResource">
+		<sequence>
+			<element name="children" type="tns:WESBResource" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+		<attribute name="name" type="string"></attribute>
+		<attribute name="type" type="string"></attribute>
+	</complexType>
+
+	<complexType name="WESBProject">
+		<complexContent>
+			<extension base="tns:WESBResource">
+				<sequence>
+					<element name="applicableLandingPoints" type="string"
+						minOccurs="0" maxOccurs="unbounded">
+					</element>
+					<element name="maps" type="tns:WESBMaps"></element>
+					<element name="javas" type="tns:WESBJavas"></element>
+					<element name="schemas" type="tns:WESBSchemas"></element>
+					<element name="module" type="tns:SCAModule"></element>
+				</sequence>
+				<attribute name="landingPoint" type="string" use="optional">
+				</attribute>
+				<attribute name="targetName" type="string"></attribute>
+				<attribute name="toConvert" type="boolean" use="required"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="WESBMaps">
+		<complexContent>
+			<extension base="tns:WESBResource">
+				<sequence>
+					<element name="allMaps" type="tns:WESBMap" minOccurs="0"
+						maxOccurs="unbounded"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="WESBMap">
+		<complexContent>
+			<extension base="tns:WESBResource">
+				<sequence>
+					<element name="usages" type="string" minOccurs="0"
+						maxOccurs="unbounded">
+					</element>
+				</sequence>
+				<attribute name="tobeConverted" type="boolean" use="required">
+				</attribute>
+				<attribute name="mapType" type="string"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+
+	<complexType name="WESBJavas">
+		<complexContent>
+			<extension base="tns:WESBResource">
+				<sequence>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="WESBSchemas">
+		<complexContent>
+			<extension base="tns:WESBResource">
+				<sequence>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="SCAModule">
+		<complexContent>
+			<extension base="tns:WESBResource">
+				<sequence></sequence>
+				<attribute name="errorMessage" type="string"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="ExportResource">
+		<complexContent>
+			<extension base="tns:WESBResource">
+				<sequence></sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="ImportResource">
+		<complexContent>
+			<extension base="tns:WESBResource">
+				<sequence></sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="ComponentResource">
+		<complexContent>
+			<extension base="tns:WESBResource">
+				<sequence></sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="MFCComponentResource">
+		<complexContent>
+			<extension base="tns:ComponentResource">
+				<sequence></sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="WESBConversionDataType">
+		<sequence>
+			<element name="sourceProjects" type="tns:WESBProject"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="globalConfiguration"
+				type="tns:GlobalConfigurationType" maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="result" type="string"></element>
+		</sequence>
+		<attribute name="resultOutOfSync" type="boolean" use="required"></attribute>
+	</complexType>
+
+	<element name="wesbConversionData" type="tns:WESBConversionDataType"></element>
+
+	<complexType name="GlobalConfigurationType">
+		<sequence>
+			<element name="primitiveConverters"
+				type="tns:PrimitiveConverter" minOccurs="0" maxOccurs="unbounded">
+			</element>
+			<element name="pathMappings" type="tns:PathMapping"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+			<element name="bindingConverters"
+				type="tns:BindingConverter" minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+		<attribute name="includeReferencedProject" type="boolean"
+			use="required">
+		</attribute>
+		<attribute name="mergeResult" type="boolean" use="required"></attribute>
+	</complexType>
+
+
+
+</schema>

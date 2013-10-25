@@ -1,0 +1,36 @@
+	@Override
+	public Nodes convert(ConverterContext converterContext) throws Exception {
+		Nodes nodes = createNodes(converterContext);
+		String nodeName = getProposedIIBNodeNameFromBinding(converterContext);
+
+		// -------------------- create IIB node(s) ------------------
+		// You can create one or more IIB message flow nodes to implement logic equivalent 
+		// to the original WESB mediation primitive.
+		// Assign a unique role (which is a free-form string) to each IIB message flow node which you 
+		// create in the Nodes object so that it can be retrieved later on.
+		//
+		// For example:
+		//		SOAPInputNode soapInputNode = (SOAPInputNode) createNode(converterContext.targetFlow, nodeName, ROLE_ENTRY,
+		//			SOAPInputNode.class, nodes);
+		//		SOAPReplyNode soapReplyNode = (SOAPReplyNode) createNode(converterContext.targetFlow, nodeName + REPLY_NODE_SUFFIX,
+		//			ROLE_EXIT, SOAPReplyNode.class, nodes); //$NON-NLS-1$
+
+		// TODO create IIB node(s)
+
+		// ----------- Configure wiring between those IIB node(s) if required
+		//
+		// For example, 	
+		//		converterContext.targetFlow.connect(soapInputNode.OUTPUT_TERMINAL_OUT, routeToLabelNode.INPUT_TERMINAL_IN);
+
+		// ------------------- configure properties on IIB node(s) -----------
+
+		// TODO Create IIB node(s) 
+
+		// ------------------- configure properties on IIB node(s) -----------
+		// To configure properties on IIB message flow node(s), refer to the IBM Integration Java API for more information. 
+
+		// TODO Configure the IIB message flow nodes based on the properties found on the original WESB Export/Import binding.
+
+		return nodes;
+	}
+

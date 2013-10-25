@@ -1,0 +1,6 @@
+	public Terminal getInputTerminal(String sourceTerminalName, Nodes nodes) {
+		// Retrieve the node and map to its input terminal. For example,
+		//		return ((SOAPReplyNode) nodes.getNode(ROLE_EXIT)).INPUT_TERMINAL_IN; //$NON-NLS-1$
+		return null;
+	}
+

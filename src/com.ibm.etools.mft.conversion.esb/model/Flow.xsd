@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" ecore:ignoreSubstitutionGroups="true" elementFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name="import" type="import"/>
+	<xsd:complexType ecore:name="Import" name="import">
+		<xsd:attribute name="namespace" type="xsd:anyURI" use="optional"/>
+		<xsd:attribute name="location" type="xsd:string" use="required"/>		
+		<xsd:anyAttribute namespace="##any" processContents="lax"/>		
+	</xsd:complexType>
+	
+	<xsd:element name="flow" type="flow"/>
+	<xsd:complexType ecore:name="Flow" name="flow">
+		<xsd:sequence>
+			<xsd:element ecore:name="notes" maxOccurs="unbounded" minOccurs="0" ref="note"/>
+			<xsd:element ecore:name="properties" maxOccurs="unbounded" minOccurs="0" ref="abstractProperty"/>
+			<xsd:element ecore:name="nodes" maxOccurs="unbounded" minOccurs="0" ref="node"/>
+			<xsd:element ecore:name="extension" maxOccurs="1" minOccurs="0" ref="extension"/>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:NCName"/>
+		<xsd:attribute name="description" type="xsd:string"/>	
+		<xsd:anyAttribute namespace="##any" processContents="lax"/>
+	</xsd:complexType>
+	
+	<xsd:element name="note" type="note"/>
+	<xsd:complexType ecore:name="Note" name="note">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:anyAttribute namespace="##any" processContents="lax"/>
+			</xsd:extension>		
+		</xsd:simpleContent>
+	</xsd:complexType>
+	
+	<xsd:element name="node" type="node"/>
+	<xsd:complexType ecore:name="Node" name="node">
+		<xsd:sequence>		
+			<xsd:element ecore:name="notes" maxOccurs="unbounded" minOccurs="0" ref="note"/>
+			<xsd:element ecore:name="properties" maxOccurs="unbounded" minOccurs="0" ref="abstractProperty"/>
+			<xsd:element ecore:name="inputTerminals" maxOccurs="unbounded" minOccurs="0" ref="inputTerminal"/>
+			<xsd:element ecore:name="outputTerminals" maxOccurs="unbounded" minOccurs="0" ref="outputTerminal"/>
+			<xsd:element ecore:name="failTerminals" maxOccurs="unbounded" minOccurs="0" ref="failTerminal"/>
+			<xsd:element ecore:name="extension" maxOccurs="1" minOccurs="0" ref="extension"/>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+		<xsd:attribute name="type" type="xsd:string" use="required"/>
+		<xsd:attribute name="displayName" type="xsd:string"/>
+		<xsd:attribute name="description" type="xsd:string"/>
+		<xsd:anyAttribute namespace="##any" processContents="lax"/>		
+	</xsd:complexType>
+
+	<xsd:element abstract="true" name="abstractProperty" type="abstractProperty"/>
+	<xsd:complexType ecore:name="AbstractProperty" name="abstractProperty">
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string"/>
+		<xsd:anyAttribute namespace="##any" processContents="lax"/>				
+	</xsd:complexType>
+
+	<xsd:element name="promotedProperty" substitutionGroup="abstractProperty" type="promotedProperty"/>
+	<xsd:complexType ecore:name="PromotedProperty" name="promotedProperty">
+		<xsd:complexContent>
+			<xsd:extension base="abstractProperty">
+				<xsd:attribute name="group" type="xsd:string"/>
+				<xsd:attribute name="value" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:element name="property" substitutionGroup="abstractProperty" type="property"/>
+	<xsd:complexType ecore:name="Property" name="property">
+		<xsd:complexContent mixed="true">
+			<xsd:extension base="abstractProperty">
+				<xsd:attribute name="value" type="xsd:string"/>
+				<xsd:attribute name="promotedPropertyGroup" type="xsd:string"/>
+				<xsd:attribute name="promotedPropertyName" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+		
+	<xsd:element name="table" substitutionGroup="abstractProperty" type="table"/>
+	<xsd:complexType ecore:name="Table" name="table">
+		<xsd:complexContent>
+			<xsd:extension base="abstractProperty">
+				<xsd:sequence>
+					<xsd:element ecore:name="rows" maxOccurs="unbounded" minOccurs="0" ref="row"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:element name="row" type="row"/>
+	<xsd:complexType ecore:name="Row" name="row">
+		<xsd:sequence>
+			<xsd:element ecore:name="properties" maxOccurs="unbounded" minOccurs="0" ref="property"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="terminal" type="terminal"/>
+	<xsd:complexType ecore:name="Terminal" name="terminal">
+		<xsd:sequence>
+			<xsd:element ecore:name="refinements" maxOccurs="unbounded" minOccurs="0" ref="refinement"/>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string"/>
+		<xsd:attribute name="displayName" type="xsd:string"/>
+		<xsd:attribute name="description" type="xsd:string"/>
+		<xsd:attribute name="type" type="xsd:QName"/>
+		<xsd:attribute default="true" name="explicitType" type="xsd:boolean"/>
+	</xsd:complexType>
+
+	<xsd:element name="refinement" type="refinement"/>
+	<xsd:complexType ecore:name="Refinement" name="refinement">
+		<xsd:attribute name="path" type="xsd:string" use="required"/>
+		<xsd:attribute name="type" type="xsd:QName" use="required"/>
+	</xsd:complexType>
+	
+	<xsd:element name="inputTerminal" type="inputTerminal"/>
+	<xsd:complexType ecore:name="InputTerminal" name="inputTerminal">
+		<xsd:complexContent>
+			<xsd:extension base="terminal"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:element name="outputTerminal" type="outputTerminal"/>
+	<xsd:complexType ecore:name="OutputTerminal" name="outputTerminal">
+		<xsd:complexContent>
+			<xsd:extension base="terminal">
+				<xsd:sequence>
+					<xsd:element ecore:name="wires" maxOccurs="unbounded" minOccurs="0" ref="wire"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:element name="failTerminal" type="failTerminal"/>
+	<xsd:complexType ecore:name="FailTerminal" name="failTerminal">
+		<xsd:complexContent>
+			<xsd:extension base="terminal">
+				<xsd:sequence>
+					<xsd:element ecore:name="wires" maxOccurs="unbounded" minOccurs="0" ref="wire"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:element name="wire" type="wire"/>
+	<xsd:complexType ecore:name="Wire" name="wire">
+		<xsd:attribute name="targetNode" type="xsd:string" use="required"/>
+		<xsd:attribute default="in" name="targetTerminal" type="xsd:string"/>
+	</xsd:complexType>
+
+	<xsd:element name="extension" type="extension"/>
+	<xsd:complexType ecore:name="Extension" name="extension">
+		<xsd:sequence>
+			<xsd:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

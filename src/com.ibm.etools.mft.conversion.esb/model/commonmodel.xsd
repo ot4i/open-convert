@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns="http://www.ibm.com/mb/commonmodel" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.ibm.com/mb/commonmodel">
+
+    <xsd:complexType name="actions">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Defines an action for a connector parameter or group of parameters depending 
+            	on the condition expression (using xPath). Element valueExpression (xPath) defines 
+            	the value when the value set by action as a result of condition detected by the conditionExpression.
+            	actionClass is an implementation of the action handler interface that can be provided 
+            	by the connector developer to process the events. Action handler takes the model and 
+            	current parameter as input parameters. It can validate the value and throw an exception 
+            	when the parameter value is not valid.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="action">
+                <xsd:complexType>
+                    <xsd:sequence>
+						<xsd:element name="type" type="actionTypeEnum"/>
+						<xsd:element minOccurs="0" name="default" type="xsd:token"/>
+			            <xsd:element minOccurs="0" name="conditionExpression" type="xsd:token"/>
+            			<xsd:element minOccurs="0" name="valueExpression" type="xsd:token"/>
+			            <xsd:element minOccurs="0" name="actionClass" type="xsd:token"/>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+   
+    <xsd:complexType name="configuration">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Describes key value pairs of configuration information.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="key" type="xsd:token"/>
+            <xsd:element name="value" type="xsd:token"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="listItems">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">The items that are displayed in an enumerated list.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="listItem">
+                <xsd:complexType>
+                    <xsd:sequence>
+						<xsd:element name="listItemId" type="xsd:token"/>
+			            <xsd:element name="displayName" type="xsd:token"/>
+            			<xsd:element name="value" type="xsd:token"/>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="lists">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Provides support for enumerated values.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="list">
+                <xsd:complexType>
+                    <xsd:sequence>
+				        <xsd:element name="listId" type="xsd:token"/>
+				        <xsd:element name="displayName" type="xsd:token"/>
+				        <xsd:element name="systemList" type="xsd:boolean"/>
+			            <xsd:element name="listItems" type="listItems"/>
+			            <xsd:element name="systemListItems" type="listItems"/>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="categories">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Categories that are visible in the toolkit or web environment when user can see what 
+            	connectors discovery definitions are installed in this environment. 
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="category" type="category">
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="category">
+    	<xsd:annotation>
+           <xsd:documentation xml:lang="en">
+            	An individual category that can be used as part of the connector definition. 
+            </xsd:documentation>
+        </xsd:annotation>
+		<xsd:sequence>
+        	<xsd:element name="package" type="xsd:token"/>
+            <xsd:element name="parentCategory" type="category"/>
+            <xsd:element name="displayName" type="translatableText"/>
+            <xsd:element minOccurs="0" name="specification" type="specification"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+<!-- Type used to define any translatable string in the definition. This is used by the NL support to resolve the text using the key attribute -->   
+   <xsd:complexType name="translatableText">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Defines translatable text that can be used as a display name or description.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+        	<xsd:extension base="xsd:token">
+        		<xsd:attribute name="nlKey" type="xsd:token"/>
+      		</xsd:extension>
+      	</xsd:simpleContent>
+   </xsd:complexType>  
+<!-- END: translatableText -->
+
+    <xsd:complexType name="tables">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines a complex type for parameters with repeating rows.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="table">
+                <xsd:complexType>
+			        <xsd:sequence>
+						<xsd:element name="tableId" type="xsd:token"/>
+						<xsd:element name="displayName" type="translatableText"/>
+			            <xsd:element name="columns">
+			                <xsd:complexType>
+			                    <xsd:sequence>
+			                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="column">
+			                            <xsd:complexType>
+			                                <xsd:sequence>
+			                                    <xsd:element name="columnId" type="xsd:token"/>
+						                        <xsd:element name="referenceId" type="xsd:token"/>
+			                                    <xsd:element minOccurs="0" name="style" type="xsd:token"/>
+			                                    <xsd:element name="displayName" type="translatableText"/>
+			                                    <xsd:element minOccurs="0" name="width" type="xsd:token"/>
+			                                    <xsd:element minOccurs="0" name="default" type="xsd:token"/>
+			                                    <xsd:element default="false" name="mandatory" type="xsd:boolean"/>
+			                                    <xsd:element name="helpText" type="translatableText"/>
+			                                </xsd:sequence>
+			                            </xsd:complexType>
+			                        </xsd:element>
+			                    </xsd:sequence>
+			                </xsd:complexType>
+			            </xsd:element>
+			        </xsd:sequence>
+			    </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="messages">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">The NLS messages required for summary files.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="message">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="messageId" type="xsd:token"/>
+                        <xsd:element name="value" type="xsd:token"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType mixed="true" name="schema">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Allows arbitrary schema definitions in the pattern definition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="true">
+            <xsd:restriction base="xsd:anyType">
+                <xsd:sequence>
+                    <xsd:any maxOccurs="unbounded" minOccurs="0" processContents="skip"/>
+                </xsd:sequence>
+            </xsd:restriction>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="schemaType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Describes the type of a connector parameter. Type element may be one of the following:
+            	XSD simple type (string, integer, boolean etc);	Enumeration defined by the model;
+            	Table defined by the model. It may also contain a list of possible values defined 
+            	with enumeration.
+            	If 'maxOccurs' equals -1 or not present it means that it is an unbounded list. If 'minOccurs' is 1 then this
+            	parameter is required. The 'type' would be used to validate the entered value. If the type is boolean
+            	then the checkbox widget will be used to render the parameter on the user interface.
+            	The 'values' element may be used to define the list of possible values. This element is not used to
+            	validate that the value.  
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="maxOccurs" minOccurs="0" type="xsd:nonNegativeInteger"/>
+            <xsd:element name="minOccurs" type="xsd:nonNegativeInteger"/>
+            <xsd:element name="type" type="parameterTypeEnum"/>
+            <xsd:element name="values" minOccurs="0" type ="enum"/>    
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="master">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Specifies a dependency relationship between connector parameters.
+            	The 'master' element marks the parameter as an event source. The 'type' element 
+            	defines the types of event that the parameter marked as 'slave' listens to.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="slave">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="parameterId" type="xsd:token"/>
+                        <xsd:element name="events">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="event">
+                                        <xsd:complexType>
+                                            <xsd:sequence>
+                                                <xsd:element name="type" type="eventTypeEnum"/>
+                                            </xsd:sequence>
+                                        </xsd:complexType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="groups">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Containers for a set of groups of connector parameters.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="group" type="group"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="group">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Logical container for connector parameters that define different connector 
+            	configuration sections. It is used to visually group the parameters by the user interface.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+   	        <xsd:element name="id" type="xsd:token"/>
+            <xsd:element name="displayName" type="translatableText"/>
+            <xsd:element default="true" name="generateDocumentation" type="xsd:boolean"/>
+            <xsd:element name="description" type="translatableText"/>
+            <xsd:element default="true" name="expand" type="xsd:boolean"/>
+            <xsd:element default="true" name="visible" type="xsd:boolean"/>
+            <xsd:element name="parameters" type="parameters"/>
+            <xsd:element minOccurs="0" name="childrenGroups" type="groups"/>
+            <xsd:element minOccurs="0" name="actions" type="actions"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="editorConfiguration">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Optional configuration information for editors based on key value pairs.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="configuration" type="configuration"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="parameters">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	The fundamental building block that defines the configuration parameter
+            	for the connector discovery.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="parameter">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:token"/>
+                        <xsd:element name="groupId" type="xsd:token"/>
+                        <xsd:element name="displayName" type="translatableText"/>
+                        <xsd:element minOccurs="0" name="default" type="xsd:token"/>
+                        <xsd:element default="false" name="mandatory" type="xsd:boolean"/>
+                        <xsd:element default="true" name="configurable" type="xsd:boolean"/>
+                        <xsd:element default="true" name="visible" type="xsd:boolean"/>
+                        <xsd:element default="false" name="sensitive" type="xsd:boolean"/>
+                        <xsd:element minOccurs="0" name="expression" type="xsd:token"/>
+                        <xsd:element name="schema" type="schemaType"/>
+                        <xsd:element minOccurs="0" name="helpText" type="translatableText"/>
+                        <xsd:element minOccurs="0" name="master" type="master"/>
+                        <xsd:element minOccurs="0" name="actions" type="actions"/>
+                        <xsd:element minOccurs="0" name="customEditor" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!-- xsd:complexType name="steps">
+    	<xsd:sequence>
+    		<xsd:element name="steps" type="step" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="step">
+    	<xsd:sequence>
+    		<xsd:element name="groups" type="groups"></xsd:element>
+    	</xsd:sequence>
+    	<xsd:attribute name="displayName" type="xsd:string"></xsd:attribute>
+    </xsd:complexType-->
+
+
+    <xsd:complexType name="specification">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            The specification that documents this connector. HTML files that can be displayed by 
+            the UI that describe connector details.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+			<xsd:element name="pluginId" type="xsd:token"/>
+			<xsd:element name="relativePath" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="url" type="xsd:anyURI" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="actionTypeEnum">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Describes the different types of action handlers that are handled by the 
+            	framework using xpath (parameter enablement or validation);
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="enable"/>
+            <xsd:enumeration value="validate"/>
+            <xsd:enumeration value="setValue"/>
+            <xsd:enumeration value="custom"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="eventTypeEnum">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Describes the different types of events that parameters can 
+            	listen to (valueChanged and enablementChanged).
+           	</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="valueChanged"/>
+            <xsd:enumeration value="enablementChanged"/>
+            <xsd:enumeration value="validateSelection"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="parameterTypeEnum">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Describes the different types of parameters that are supported by the
+            	controller and view.
+           	</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <!-- Simple types used to validate the values specified by the user -->
+            <!-- default would be string -->
+            <xsd:enumeration value="string"/>
+            <xsd:enumeration value="integer"/>
+            <xsd:enumeration value="long"/>
+            <xsd:enumeration value="decimal"/>
+            <xsd:enumeration value="boolean"/>
+            <xsd:enumeration value="date"/>
+            <xsd:enumeration value="time"/>
+            <xsd:enumeration value="float"/>
+            <xsd:enumeration value="short"/>
+            <xsd:enumeration value="nonNegativeNumber"/>
+            <!-- Complex types used to validate the values specified by the user -->
+            <xsd:enumeration value="singleSelectList"/>
+            <xsd:enumeration value="multiSelectList"/>
+            <xsd:enumeration value="table"/>
+            <!-- Special kinds of parameters -->
+            <xsd:enumeration value="file"/>
+            <xsd:enumeration value="folder"/>
+            <xsd:enumeration value="mbProject"/>
+            <xsd:enumeration value="mbLibrary"/>
+            <xsd:enumeration value="mbApplication"/>
+            <xsd:enumeration value="custom"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+
+    <xsd:complexType name="buildOptions">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Build options for connector plug-ins.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+			<xsd:element name="createTranslationPlugins" type="xsd:boolean"/>
+		</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="plugins">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Defines zero or more connector plug-ins generated by the authoring tools for the given connector discovery.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="modelVersion" type="xsd:token"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="plugin">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:token"/>
+                        <xsd:element name="displayName" type="xsd:string"/>
+                        <xsd:element name="package" type="xsd:string"/>
+                        <xsd:element name="description" type="xsd:string"/>
+                        <xsd:element name="version" type="xsd:string"/>
+                        <xsd:element name="provider" type="xsd:token"/>
+                        <xsd:element name="categories" type="categories"/>
+                        <xsd:element name="buildOptions" type="buildOptions"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+        <xsd:complexType name="enums">
+    	<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="enum" type="enum"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+   <xsd:complexType name="enum">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+            	Defines enumeration type supported by the connector. Enumeration has a name, type and NVP describing
+            	all the supported values.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+        	<xsd:element name="name" type="xsd:string"/>
+        	<xsd:element minOccurs="0" name="type" type="xsd:token"/>
+            <xsd:element minOccurs="0" name="enumValues">
+                <xsd:complexType>
+                    <xsd:sequence>
+           				<xsd:element maxOccurs="unbounded"  minOccurs="0" name="enumValue">
+                			<xsd:complexType>
+                    			<xsd:sequence>
+									<xsd:element name="valueName" type="xsd:string"/>
+									<xsd:element name="displayName" type="translatableText"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>	
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>	
+        </xsd:sequence>
+   </xsd:complexType>
+    
+</xsd:schema>

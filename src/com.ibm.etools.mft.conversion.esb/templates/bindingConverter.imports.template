@@ -1,0 +1,5 @@
+com.ibm.broker.config.appdev.Terminal
+com.ibm.broker.config.appdev.nodes.SOAPReplyNode
+com.ibm.broker.config.appdev.nodes.SOAPInputNode
+com.ibm.etools.mft.conversion.esb.extensionpoint.AbstractBindingConverter
+com.ibm.etools.mft.conversion.esb.extensionpoint.Nodes

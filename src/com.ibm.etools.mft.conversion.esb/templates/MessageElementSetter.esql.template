@@ -1,0 +1,14 @@
+{2}
+
+CREATE COMPUTE MODULE {0}
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		{1}
+	END;
+END MODULE;

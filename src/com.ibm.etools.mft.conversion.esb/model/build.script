@@ -1,0 +1,7 @@
+set JAVA_HOME=c:\jdk16x32
+
+C:\downloads\jaxb-ri-2.2.6\bin\xjc -p com.ibm.etools.mft.conversion.esb.model.definition -extension -b C:\workspace\mbtk80x\com.ibm.etools.mft.conversion.esb\model\common.episode -d C:\workspace\mbtk80x\com.ibm.etools.mft.conversion.esb\src C:\workspace\mbtk80x\com.ibm.etools.mft.conversion.esb\model\WESBConversionDefinition.xsd
+
+C:\downloads\jaxb-ri-2.2.6\bin\xjc -p com.ibm.etools.mft.conversion.esb.model -d C:\workspace\mbtk80x\com.ibm.etools.mft.conversion.esb\src C:\workspace\mbtk80x\com.ibm.etools.mft.conversion.esb\model\WESBConversion.xsd
+
+C:\downloads\jaxb-ri-2.2.6\bin\xjc -p com.ibm.etools.mft.conversion.esb.model.mfc -d C:\workspace\mbtk80x\com.ibm.etools.mft.conversion.esb\src C:\workspace\mbtk80x\com.ibm.etools.mft.conversion.esb\model\MFCFlow.xsd

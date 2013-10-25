@@ -1,0 +1,5 @@
+	@Override
+	public String getType() {
+		return "%1$s";
+	}
+	

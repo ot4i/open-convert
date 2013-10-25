@@ -1,0 +1,7 @@
+	public String getConvertedTo() {
+		// TODO Provide information about what the converter will convert the mediation primitive to.
+		// The String returned here is used to populate the "Convert To" column of the Mediation Primitives table
+		// in the "Configure global conversion options" section of the WESB Conversion Tool.
+    	// For example, "Trace" or "Subflow" or some other node name.
+		return "To do by user";
+	}

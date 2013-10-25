@@ -1,0 +1,10 @@
+	@Override
+	public Terminal getOutputTerminal(String sourceTerminalName, Nodes nodes) {
+		// Retrieve the node and map to its output terminal. For example,
+		// 		TraceNode trace = (TraceNode) nodes.getNode(ROLE_MAIN);
+		// 		return trace.OUTPUT_TERMINAL_OUT;
+		
+		// TODO convert output terminal
+		
+		return super.getOutputTerminal(sourceTerminalName, nodes);
+	}

@@ -1,0 +1,5 @@
+	public Terminal getOutputTerminal(String sourceTerminalName, Nodes nodes) {
+		// Retrieve the node and map to its output terminal. For example,
+		//		return ((SOAPInputNode) nodes.getNode(ROLE_ENTRY)).OUTPUT_TERMINAL_OUT; 
+		return null;
+	}

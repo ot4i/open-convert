@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+	ecore:ignoreSubstitutionGroups="true" ecore:nsPrefix="" ecore:package="mfcflow" elementFormDefault="qualified"
+	targetNamespace="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mfcex="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension">
+
+	<xsd:include schemaLocation="Flow.xsd" />
+	<xsd:import namespace="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension"
+		schemaLocation="MFCFlowExtension.xsd" />
+
+	<xsd:element name="mediationFlow" type="mediationFlow" />
+	<xsd:complexType ecore:name="MediationFlow" name="mediationFlow">
+		<xsd:sequence>
+			<xsd:element ecore:name="imports" maxOccurs="unbounded" minOccurs="0" ref="import" />
+			<xsd:element ecore:name="promotedProperties" maxOccurs="unbounded" minOccurs="0" ref="promotedProperty" />
+			<xsd:element ecore:name="references" maxOccurs="unbounded" minOccurs="0" ref="reference" />
+			<xsd:element ecore:name="interfaces" maxOccurs="unbounded" minOccurs="0" ref="interface" />
+			<xsd:element ecore:name="flows" maxOccurs="unbounded" minOccurs="0" ref="flow" />
+			<xsd:element ecore:name="extension" maxOccurs="1" minOccurs="0" ref="extension" />
+		</xsd:sequence>
+		<xsd:attribute name="targetNamespace" type="xsd:string" />
+		<xsd:attribute name="name" type="xsd:string" />
+		<xsd:attribute name="multipleFiles" type="xsd:boolean" default="false" />
+	</xsd:complexType>
+
+	<xsd:element name="reference" type="reference" />
+	<xsd:complexType ecore:name="Reference" name="reference">
+		<xsd:attribute name="name" type="xsd:string" use="required" />
+		<xsd:attribute name="portType" type="xsd:QName" use="required" />
+	</xsd:complexType>
+
+	<xsd:element name="interface" type="interface" />
+	<xsd:complexType ecore:name="Interface" name="interface">
+		<xsd:sequence>
+			<xsd:element ecore:name="operations" maxOccurs="unbounded" minOccurs="0" ref="operation" />
+		</xsd:sequence>
+		<xsd:attribute name="portType" type="xsd:QName" />
+	</xsd:complexType>
+
+	<xsd:element name="operation" type="operation" />
+	<xsd:complexType ecore:name="Operation" name="operation">
+		<xsd:sequence>
+			<xsd:element ecore:name="requestFlow" maxOccurs="1" minOccurs="1" ref="requestFlow" />
+			<xsd:element ecore:name="responseFlow" maxOccurs="1" minOccurs="0" ref="responseFlow" />
+			<xsd:element ecore:name="errorFlow" maxOccurs="1" minOccurs="0" ref="errorFlow" />
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" />
+	</xsd:complexType>
+
+	<xsd:complexType ecore:name="OperationFlow" name="operationFlow">
+		<xsd:complexContent>
+			<xsd:extension base="flow">
+				<xsd:attribute name="ref" type="xsd:QName" />
+				<xsd:attribute name="portType" type="xsd:QName" />
+				<xsd:attribute name="operation" type="xsd:string" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:element name="requestFlow" substitutionGroup="flow" type="requestFlow" />
+	<xsd:complexType ecore:name="RequestFlow" name="requestFlow">
+		<xsd:complexContent>
+			<xsd:extension base="operationFlow" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:element name="responseFlow" substitutionGroup="flow" type="responseFlow" />
+	<xsd:complexType ecore:name="ResponseFlow" name="responseFlow">
+		<xsd:complexContent>
+			<xsd:extension base="operationFlow" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:element name="errorFlow" substitutionGroup="flow" type="errorFlow" />
+	<xsd:complexType ecore:name="ErrorFlow" name="errorFlow">
+		<xsd:complexContent>
+			<xsd:extension base="operationFlow" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:element name="subflow" substitutionGroup="flow" type="subflow" />
+	<xsd:complexType ecore:name="Subflow" name="subflow">
+		<xsd:complexContent>
+			<xsd:extension base="flow" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+</xsd:schema>
+

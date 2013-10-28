@@ -6,9 +6,6 @@
     <extension-point id="BindingConverter" name="Binding Converter" schema="schema/BindingConverter.exsd"/>
 
  	<extension point="com.ibm.etools.mft.conversion.esb.MediationPrimitiveConverter">
-        <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.MessageElementSetterConverter"/>
-        <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.XSLTransformationConverter"/>
-        <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.MessageFilterConverter"/>
         <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.InputConverter"/>
         <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.InputResponseConverter"/>
         <mediationPrimitiveHandler class="com.ibm.etools.mft.conversion.esb.extension.mediationprimitive.CalloutConverter"/>

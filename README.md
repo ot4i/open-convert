@@ -10,7 +10,7 @@ To avoid having to manually import the projects into the Integration Toolkit, in
 
 ##Setup
 1. Clone the Git repositories and import the projects (see [additional instructions](INSTRUCTIONS.md) if you need more detailed instructions):
-  * Clone and import this repository (URI: git://OpenTechnologiesForIntegration.github.com/?.git).
+  * Clone and import this repository (URI: git://github.com/ot4i/open-convert.git).
  
 2. Launch or Debug an Eclipse Application via Run | Run (or Debug) Configurations, and choose Eclipse Application.
 

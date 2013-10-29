@@ -18,7 +18,7 @@ To avoid having to manually import the projects into the Integration Toolkit, in
 Tested on Windows 7 Pro N x64 with [IIB Developer Edition](http://www.ibm.com/software/products/us/en/integration-bus/).
 
 ##Contributing
-We welcome your feedback on this new development. Download the sample, install, and have a play. If you would like to contribute, please use the contact details on the [organisation homepage](https://github.com/OpenTechnologiesForIntegration).
+We welcome your feedback on this new development. If you would like to contribute, please use the contact details on the [organisation homepage](https://github.com/ot4i).
 
 There are 2 types of contribution:
   * Contribute to mediation primitive converter or binding converter. You can add your extension to project com.ibm.etools.mft.conversion.esb or you can create your own plug-in project and add the extension there.

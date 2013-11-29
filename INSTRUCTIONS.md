@@ -8,7 +8,7 @@ In the Integration Toolkit, import the Git repositories and set up IIB:
 
 * In the Git Repository Exploring perspective, click **Clone a Git repository**.
 * In the Git Repositories view, click the **Clone a Git Repository** icon on the toolbar at the top right of the window.
-* Clone the Open Technologies For Integration repository by setting the git repository URI to git://OpenTechnologiesForIntegration.github.com/?.git
+* Clone the Open Technologies For Integration repository by setting the git repository URI to https://github.com/ot4i/open-convert.git
 * Import the project com.ibm.etools.mft.conversion.esb into your workspace (in the Git Repositories view, under org.openintegration.connector.mqtt?, right-click Working Directory and select **Import Projects**). 
 
 ##Copyright and license

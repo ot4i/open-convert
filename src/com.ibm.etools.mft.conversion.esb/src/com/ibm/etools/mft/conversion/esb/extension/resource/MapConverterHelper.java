@@ -169,46 +169,53 @@ public class MapConverterHelper {
 		if (!context.resource.exists()) {
 			return;
 		}
-		this.targetFile = context.helper.getTargetFile((IFile) context.resource);
-		ConversionUtils.copy((IFile) context.resource, targetFile);
-
-		this.userLog = context.log;
-		this.pathMappings = context.pathMappings;
-		variablesForInput.clear();
-		variablesForOutput.clear();
-		idCount = 0;
-		inputSMOs.clear();
-		outputSMOs.clear();
-		todoTasksAdded.clear();
-
-		context.index(targetFile.getProject());
-		context.monitor.subTask(WESBConversionMessages.progressConverting + context.resource.getFullPath().toString());
-
-		Document dom = ConversionUtils.loadXML(targetFile.getContents());
-
-		NodeList mappingRoots = dom.getElementsByTagNameNS("http://www.ibm.com/2008/ccl/Mapping", "mappingRoot"); //$NON-NLS-1$ //$NON-NLS-2$
-		if (mappingRoots.getLength() > 1) {
-			successfulConversion = false;
-			userLog.addEntry(targetFile, new TodoEntry(WESBConversionMessages.todoMultipleMappingRoots));
-		}
-
-		if (mappingRoots.getLength() > 0) {
-			Node mr = mappingRoots.item(0);
-			convertMappingRoot((Element) mr);
-		}
-
-		String content = ConversionUtils.saveXML(dom);
-		ByteArrayInputStream in = new ByteArrayInputStream(content.getBytes("UTF-8")); //$NON-NLS-1$
-		targetFile.setContents(in, true, false, new NullProgressMonitor());
-
-		if (oldStyleMap) {
-			URI mapFileURI = URI.createPlatformResourceURI(targetFile.getFullPath().toString());
-			Resource r = ModelUtils.getMappingResourceManager(mapFileURI).createResourceSet().getResource(mapFileURI, true);
-			if (r.getContents().size() > 0 && (r.getContents().get(0) instanceof MappingRoot)) {
-				MappingRoot mr = (MappingRoot) r.getContents().get(0);
-				XMLUtils.setTargetEngine(mr, "xquery");
-				r.save(Collections.EMPTY_MAP);
+		try
+		{
+			this.targetFile = context.helper.getTargetFile((IFile) context.resource);
+			ConversionUtils.copy((IFile) context.resource, targetFile);
+	
+			this.userLog = context.log;
+			this.pathMappings = context.pathMappings;
+			variablesForInput.clear();
+			variablesForOutput.clear();
+			idCount = 0;
+			inputSMOs.clear();
+			outputSMOs.clear();
+			todoTasksAdded.clear();
+	
+			context.index(targetFile.getProject());
+			context.monitor.subTask(WESBConversionMessages.progressConverting + context.resource.getFullPath().toString());
+	
+			Document dom = ConversionUtils.loadXML(targetFile.getContents());
+	
+			NodeList mappingRoots = dom.getElementsByTagNameNS("http://www.ibm.com/2008/ccl/Mapping", "mappingRoot"); //$NON-NLS-1$ //$NON-NLS-2$
+			if (mappingRoots.getLength() > 1) {
+				successfulConversion = false;
+				userLog.addEntry(targetFile, new TodoEntry(WESBConversionMessages.todoMultipleMappingRoots));
 			}
+	
+			if (mappingRoots.getLength() > 0) {
+				Node mr = mappingRoots.item(0);
+				convertMappingRoot((Element) mr);
+			}
+	
+			String content = ConversionUtils.saveXML(dom);
+			ByteArrayInputStream in = new ByteArrayInputStream(content.getBytes("UTF-8")); //$NON-NLS-1$
+			targetFile.setContents(in, true, false, new NullProgressMonitor());
+
+			if (oldStyleMap) {
+				URI mapFileURI = URI.createPlatformResourceURI(targetFile.getFullPath().toString());
+				Resource r = ModelUtils.getMappingResourceManager(mapFileURI).createResourceSet().getResource(mapFileURI, true);
+				if (r.getContents().size() > 0 && (r.getContents().get(0) instanceof MappingRoot)) {
+					MappingRoot mr = (MappingRoot) r.getContents().get(0);
+					XMLUtils.setTargetEngine(mr, "xquery");
+					r.save(Collections.EMPTY_MAP);
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
 		}
 
 		if (successfulConversion) {

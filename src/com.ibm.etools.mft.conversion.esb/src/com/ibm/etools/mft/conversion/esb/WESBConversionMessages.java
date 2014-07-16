@@ -331,6 +331,12 @@ public final class WESBConversionMessages extends NLS {
 	public static String todoAdvancedPropertiesOnSOAPBinding;
 
 	// Todo task messages
+	public static String todoSchemaProblems;
+	
+	public static String todoJavaProblems;
+	
+	public static String todoManualMap;
+	
 	public static String todoAttachmentsNotSupported;
 
 	public static String todoCantExactlyLocateWSDLMessagePartsBasedOnLocalName;

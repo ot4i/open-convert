@@ -46,10 +46,9 @@ import org.eclipse.wst.wsdl.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.ibm.broker.config.appdev.BrokerService;
-import com.ibm.broker.config.appdev.BrokerServiceErrorHandlers;
-import com.ibm.broker.config.appdev.BrokerServiceFlow;
-import com.ibm.broker.config.appdev.BrokerServiceOperation;
+import com.ibm.broker.config.appdev.IntegrationService;
+import com.ibm.broker.config.appdev.IntegrationServiceFlow;
+import com.ibm.broker.config.appdev.IntegrationServiceOperation;
 import com.ibm.broker.config.appdev.MessageFlow;
 import com.ibm.broker.config.appdev.Node;
 import com.ibm.broker.config.appdev.SubFlowNode;
@@ -97,6 +96,7 @@ import com.ibm.etools.mft.conversion.esb.model.mfc.ResponseFlow;
 import com.ibm.etools.mft.conversion.esb.userlog.ConversionLogEntry;
 import com.ibm.etools.mft.conversion.esb.userlog.TodoEntry;
 import com.ibm.etools.mft.logicalmodelhelpers.WorkspaceHelper;
+import com.ibm.etools.mft.uri.protocol.PlatformProtocol;
 import com.ibm.etools.mft.util.WMQIConstants;
 import com.ibm.wbit.model.utils.wsdl.WSDLUtils;
 import com.ibm.websphere.sca.scdl.Reference;
@@ -282,7 +282,7 @@ public class SCAModuleConverterHelper implements WESBConversionConstants {
 	private boolean landingOnService;
 	private IProject targetProject;
 	private IProject sourceProject;
-	private BrokerService brokerService;
+	private IntegrationService brokerService;
 
 	public SCAModuleConverterHelper(ConversionContext context) {
 		this.context = context;
@@ -462,7 +462,7 @@ public class SCAModuleConverterHelper implements WESBConversionConstants {
 				}
 			}
 		}
-		if (ex != null && com != null && ex.getTargetName() != null && !ex.getTargetName().equals(com.getDisplayName())) {
+		if (ex != null && com != null && ex.getTargetName() != null && !ex.getTargetName().equals(getTargetComponentName(com))) {
 			sb.append(ConversionUtils.addHTMLBullet(NLS.bind(WESBConversionMessages.errorComponentIsNotWiredToExport,
 					ex.getDisplayName(), com.getDisplayName())));
 		}
@@ -486,6 +486,16 @@ public class SCAModuleConverterHelper implements WESBConversionConstants {
 		} else {
 			return null;
 		}
+	}
+
+	public String getTargetComponentName(Component com) {
+		String location = null;
+		try {
+			location = PlatformProtocol.getWorkspaceFile(com.eResource().getURI()).getParent().getProjectRelativePath().toString();
+		} catch (Throwable e){
+			// do nothing
+		}
+		return (ConversionUtils.hasValue(location))? (location + "/" + com.getDisplayName()) : com.getDisplayName();
 	}
 
 	protected boolean isSupportedBinding(Binding binding) {
@@ -529,7 +539,7 @@ public class SCAModuleConverterHelper implements WESBConversionConstants {
 	}
 
 	protected void createServiceDescriptor(IProject project) throws Exception {
-		brokerService = new BrokerService(project.getName());
+		brokerService = new IntegrationService(project.getName());
 		// IFile serviceDescriptor =
 		// context.helper.getTargetFile(project.getFile("service.descriptor"));
 		// URI uri =
@@ -996,16 +1006,16 @@ public class SCAModuleConverterHelper implements WESBConversionConstants {
 							}
 
 							if (brokerService != null) {
-								BrokerServiceOperation serviceOp = getServiceOperation(op.getName());
+								IntegrationServiceOperation serviceOp = getServiceOperation(op.getName());
 								if (serviceOp == null) {
 									throw new ESBConversionException(NLS.bind(
 											WESBConversionMessages.errorMultipleWSDLXSDWithSameNSAndLocalName, op.getName(),
 											c.getName()));
 								}
 								serviceOp.getServiceFlows().clear();
-								BrokerServiceFlow flow = new BrokerServiceFlow(flowManager.getFlowResource(requestFlow)
+								IntegrationServiceFlow flow = new IntegrationServiceFlow(flowManager.getFlowResource(requestFlow)
 										.getProjectRelativePath().toString(),
-										com.ibm.broker.config.appdev.BrokerServiceFlow.FlowType.REQUEST_RESPONSE_TYPE);
+										com.ibm.broker.config.appdev.IntegrationServiceFlow.FlowType.REQUEST_RESPONSE_TYPE);
 								serviceOp.getServiceFlows().add(flow);
 							}
 						}
@@ -1027,8 +1037,8 @@ public class SCAModuleConverterHelper implements WESBConversionConstants {
 		convertWires(flow, responseFlow, inputNode, responseFlow.getNode());
 	}
 
-	protected BrokerServiceOperation getServiceOperation(String name) {
-		for (BrokerServiceOperation op : brokerService.getServiceOperations()) {
+	protected IntegrationServiceOperation getServiceOperation(String name) {
+		for (IntegrationServiceOperation op : brokerService.getServiceOperations()) {
 			if (op.getName().equals(name)) {
 				return op;
 			}
@@ -1234,31 +1244,28 @@ public class SCAModuleConverterHelper implements WESBConversionConstants {
 		for (Object o : port.getBinding().getPortType().getOperations()) {
 			if (o instanceof org.eclipse.wst.wsdl.Operation) {
 				// FIXME: one way or R/R
-				BrokerServiceOperation op = new BrokerServiceOperation(((org.eclipse.wst.wsdl.Operation) o).getName(),
-						com.ibm.broker.config.appdev.BrokerServiceOperation.OperationType.REQUEST_RESPONSE_TYPE);
+				IntegrationServiceOperation op = new IntegrationServiceOperation(((org.eclipse.wst.wsdl.Operation) o).getName(),
+						com.ibm.broker.config.appdev.IntegrationServiceOperation.OperationType.REQUEST_RESPONSE_TYPE);
 				brokerService.getServiceOperations().add(op);
 			}
 		}
 	}
 
 	protected void createServiceErrorHandlers() throws Exception {
-		if (brokerService.getServiceErrorHandlers() == null) {
-			brokerService.setServiceErrorHandlers(new BrokerServiceErrorHandlers());
-		}
-		brokerService.getServiceErrorHandlers().getServiceFlows()
-				.add(createServiceFlow("gen/" + brokerService.getServiceName() + "InputCatchHandler", //$NON-NLS-1$ //$NON-NLS-2$
-						com.ibm.broker.config.appdev.BrokerServiceFlow.FlowType.CATCH_TYPE));
-		brokerService.getServiceErrorHandlers().getServiceFlows()
-				.add(createServiceFlow("gen/" + brokerService.getServiceName() + "InputFailureHandler", //$NON-NLS-1$ //$NON-NLS-2$
-						com.ibm.broker.config.appdev.BrokerServiceFlow.FlowType.FAILURE_TYPE));
-		brokerService.getServiceErrorHandlers().getServiceFlows()
-				.add(createServiceFlow("gen/" + brokerService.getServiceName() + "InputHTTPTimeoutHandler", //$NON-NLS-1$ //$NON-NLS-2$
-						com.ibm.broker.config.appdev.BrokerServiceFlow.FlowType.TIMEOUT_TYPE));
+		brokerService.getErrorFlows()
+			.add(createServiceFlow("gen/" + brokerService.getServiceName() + "InputCatchHandler", //$NON-NLS-1$ //$NON-NLS-2$
+				com.ibm.broker.config.appdev.IntegrationServiceFlow.FlowType.CATCH_TYPE));
+		brokerService.getErrorFlows()
+			.add(createServiceFlow("gen/" + brokerService.getServiceName() + "InputFailureHandler", //$NON-NLS-1$ //$NON-NLS-2$
+				com.ibm.broker.config.appdev.IntegrationServiceFlow.FlowType.FAILURE_TYPE));
+		brokerService.getErrorFlows()
+			.add(createServiceFlow("gen/" + brokerService.getServiceName() + "InputHTTPTimeoutHandler", //$NON-NLS-1$ //$NON-NLS-2$
+				com.ibm.broker.config.appdev.IntegrationServiceFlow.FlowType.TIMEOUT_TYPE));
 	}
 
-	protected BrokerServiceFlow createServiceFlow(String location, com.ibm.broker.config.appdev.BrokerServiceFlow.FlowType type)
+	protected IntegrationServiceFlow createServiceFlow(String location, com.ibm.broker.config.appdev.IntegrationServiceFlow.FlowType type)
 			throws Exception {
-		BrokerServiceFlow flow = new BrokerServiceFlow(location + WMQIConstants.MESSAGE_SUBFLOW_EXTENSION, type);
+		IntegrationServiceFlow flow = new IntegrationServiceFlow(location + WMQIConstants.MESSAGE_SUBFLOW_EXTENSION, type);
 
 		IFile msgFlowFile = targetProject.getFile(new Path(location + WMQIConstants.MESSAGE_SUBFLOW_EXTENSION));
 		MessageFlow msgFlow = PrimitiveManager.getOrCreateMessageFlow(context, flowManager, msgFlowFile.getParent()
@@ -1307,7 +1314,7 @@ public class SCAModuleConverterHelper implements WESBConversionConstants {
 		return bindingToNodes;
 	}
 
-	public BrokerService getBrokerService() {
+	public IntegrationService getBrokerService() {
 		return brokerService;
 	}
 

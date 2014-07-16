@@ -131,4 +131,61 @@
       </EditorContributor>
    </extension>
  	
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="module"
+            class="com.ibm.ws.sca.deploy.scdl.impl.SCDLReferencedResourceFactoryImpl">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="component"
+            class="com.ibm.ws.sca.deploy.scdl.impl.SCDLReferencedResourceFactoryImpl">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="references"
+            class="com.ibm.ws.sca.deploy.scdl.impl.SCDLReferencedResourceFactoryImpl">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="import"
+            class="com.ibm.ws.sca.deploy.scdl.impl.SCDLReferencedResourceFactoryImpl">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="export"
+            class="com.ibm.ws.sca.deploy.scdl.impl.SCDLReferencedResourceFactoryImpl">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="libraryAttributes"
+            class="com.ibm.ws.sca.deploy.scdl.impl.SCDLReferencedResourceFactoryImpl">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="moduleAttributes"
+            class="com.ibm.ws.sca.deploy.scdl.impl.SCDLReferencedResourceFactoryImpl">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="attributes"
+            class="com.ibm.ws.sca.deploy.scdl.impl.SCDLReferencedResourceFactoryImpl">
+      </parser>
+   </extension>
+
 </plugin>

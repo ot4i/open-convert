@@ -18,7 +18,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: WESB conversion Plug-in
 Bundle-SymbolicName: com.ibm.etools.mft.conversion.esb;singleton:=true
-Bundle-Version: 9.0.100.qualifier
+Bundle-Version: 9.0.200.v20140515-1210
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.swt,
@@ -59,8 +59,6 @@ Require-Bundle: org.eclipse.swt,
  com.ibm.etools.mft.flow;bundle-version="[9.0.0,10.0.0)",
  com.ibm.etools.mft.fcb;bundle-version="[9.0.0,10.0.0)",
  com.ibm.etools.mft.util.ui;bundle-version="[9.0.0,10.0.0)",
- com.ibm.etools.mft.service.ui;bundle-version="[9.0.0,10.0.0)",
- com.ibm.etools.mft.service.model;bundle-version="[9.0.0,10.0.0)",
  com.ibm.ws.sca.scdl.jaxws;bundle-version="7.5.0",
  com.ibm.wbit.model.utils;bundle-version="7.5.0",
  org.eclipse.wst.common.frameworks;bundle-version="1.2.0",

@@ -51,6 +51,7 @@ import com.ibm.etools.mft.conversion.esb.model.WESBResource;
 import com.ibm.etools.mft.conversion.esb.model.WESBSchemas;
 import com.ibm.etools.mft.conversion.esb.userlog.ConversionLog;
 import com.ibm.etools.mft.conversion.esb.userlog.ConversionLogEntry;
+import com.ibm.etools.mft.conversion.esb.userlog.TodoEntry;
 import com.ibm.etools.mft.logicalmodelhelpers.WorkspaceHelper;
 import com.ibm.etools.mft.util.WMQIConstants;
 
@@ -282,12 +283,29 @@ public class WESBLibConverter implements IWESBResourceHandler, WESBConversionCon
 		context.monitor.setTaskName(WESBConversionMessages.progressConvertingSchema);
 		XSDAndWSDLConverterHelper schemaHelper = new XSDAndWSDLConverterHelper(context, (IProject) context.resource, targetP);
 		schemaHelper.copyAllXSDandWSDLFiles();
-		schemaHelper.convert();
+		try
+		{
+			schemaHelper.convert();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			context.log.addEntry(targetP, new TodoEntry (NLS.bind(WESBConversionMessages.todoSchemaProblems, targetP.getName())));
+		}
+		
 
 		if (((WESBProject) context.wesbResource).getJavas() != null) {
 			context.monitor.setTaskName(WESBConversionMessages.progressConvertingJava);
 			JavaConverterHelper javaHelper = new JavaConverterHelper(context, (IProject) context.resource, targetP);
-			javaHelper.convert();
+			try
+			{
+				javaHelper.convert();
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+				context.log.addEntry(targetP, new TodoEntry (NLS.bind(WESBConversionMessages.todoJavaProblems, targetP.getName())));
+			}
 		}
 
 		if (((WESBProject) context.wesbResource).getMaps() != null) {

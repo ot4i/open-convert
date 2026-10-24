@@ -1,3 +1,5 @@
+**This repo has not been in active development for a long while and is being archived.**
+
 #WESB-IIB Conversion tool
 You can use the WESB-IIB conversion tool to convert existing WebSphere ESB source projects to IBM Integration Bus (IIB) source projects. This repository is an open source development project for developers who require WESB-IIB conversion capabilities to share, re-use and contribute to the WESB-IIB conversion tool.
 
